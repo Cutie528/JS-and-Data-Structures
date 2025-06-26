@@ -1,0 +1,9 @@
+** start of script.js **
+
+let str = "one two three";
+let fixRegex =/(\w+)\s(\w+)\s(\w+)/; // 修改这一行
+let replaceText = "$3 $2 $1"; // 修改这一行
+let result = str.replace(fixRegex, replaceText);
+
+** end of script.js **
+

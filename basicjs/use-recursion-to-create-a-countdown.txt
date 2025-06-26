@@ -1,0 +1,17 @@
+** start of script.js **
+
+// 只修改这一行下面的代码
+function countdown(n){
+  if(n < 1){
+    return [];
+  }else{
+   const countdownArr = countdown(n-1);
+   countdownArr.unshift(n);
+   return countdownArr;
+  }
+  return;
+}
+// 只修改这一行上面的代码
+
+** end of script.js **
+
