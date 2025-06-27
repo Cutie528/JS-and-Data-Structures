@@ -1,0 +1,43 @@
+找出数字范围内的最小公倍数
+找到给定参数的最小公倍数，可以被这两个参数整除，也可以被指定范围内的所有整数整除。
+
+注意，较小数不一定总是出现在数组的第一个元素。
+
+例如，如果给定 1 和 3，找到 1 和 3 的最小公倍数，也可以被 1 到 3 之间的所有数字整除。 这里的答案将是 6。
+
+** start of script.js **
+
+function smallestCommons(arr) {
+  const [min, max] = arr.sort((a, b) => a - b);
+  const numberDivisors = max - min + 1;
+  // Largest possible value for SCM
+  let upperBound = 1;
+  for (let i = min; i <= max; i++) {
+    upperBound *= i;
+  }
+  // Test all multiples of 'max'
+  for (let multiple = max; multiple <= upperBound; multiple += max) {
+    // Check if every value in range divides 'multiple'
+    let divisorCount = 0;
+    for (let i = min; i <= max; i++) {
+      // Count divisors
+      if (multiple % i === 0) {
+        divisorCount += 1;
+      }
+    }
+    if (divisorCount === numberDivisors) {
+      return multiple;
+    }
+  }
+}
+
+smallestCommons([1,5]);
+
+** end of script.js **
+In this solution, we check every multiple of the largest value in the range until we find a value that is divisible by every value in the range.
+在此解决方案中，我们检查范围中最大值的每个倍数，直到找到可被范围中的每个值整除的值。
+
+The upper bound for this loop is the product of all values in the provided range, because this number will be divisible by every value in the range.
+此循环的上限是所提供范围内所有值的乘积，因为此数字将可被该范围内的每个值整除。
+You can use remainder operator (%) to check if the reminder of a division is 0, which means it is evenly divisible.
+您可以使用余数运算符 （%） 来检查除法的提醒是否为 0，这意味着它是均匀可整除的。

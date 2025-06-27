@@ -1,0 +1,43 @@
+转换 HTML 字符实体
+请将字符串中的 &、<、>、"（双引号）和 '（单引号）转换为相应的 HTML 字符实体。
+** start of script.js **
+
+function convertHTML(str) {
+  var temp = str.split("");
+   for (var i = 0; i < temp.length; i++) {
+    switch (temp[i]) {
+      case "<":
+        temp[i] = "&lt;";
+        break;
+      case "&":
+        temp[i] = "&amp;";
+        break;
+      case ">":
+        temp[i] = "&gt;";
+        break;
+      case '"':
+        temp[i] = "&quot;";
+        break;
+      case "'":
+        temp[i] = "&apos;";
+        break;
+    }
+  }
+
+  temp = temp.join("");
+  return temp;
+}
+
+convertHTML("Dolce & Gabbana");
+
+** end of script.js **
+
+代码说明
+Assign temp to str.split(''), which creates an array containing each individual character in the passed in string.
+将 temp 分配给 str.split（''）， 这将创建一个数组，其中包含传入的字符串中的每个单独字符。
+Pass each character in the newly created array into a switch() statement.
+将新创建的数组中的每个字符传递到 switch（） 语句中。
+Replace the HTML entities with their corresponding HTML entity string (i.e. '&' becomes '&amp;' in line 51)
+将 HTML 实体替换为其相应的 HTML 实体字符串（例如，第 51 行中的 '&' 变为 &”）
+temp.join('') converts the array of characters into a string to be returned.
+temp.join（''） 将字符数组转换为要返回的字符串。

@@ -1,0 +1,49 @@
+儿童黑话
+儿童黑话也叫 Pig Latin，是一种英语语言游戏。 规则如下：
+
+如果单词以辅音开头，就把第一个辅音字母或第一组辅音簇移到单词的结尾，并在后面加上 ay。
+
+如果单词以元音开头，只需要在结尾加上 way。
+
+** start of script.js **
+
+function translatePigLatin(str) {
+   var pigLatin = "";
+  var regex = /[aeiou]/gi;
+  if (str[0].match(regex)) {
+    pigLatin = str + "way";
+  } else if (str.match(regex) === null) {
+   
+    pigLatin = str + "ay";
+  } else {
+    
+    var vowelIndice = str.indexOf(str.match(regex)[0]);
+    pigLatin = str.substr(vowelIndice) + str.substr(0, vowelIndice) + "ay";
+  }
+
+  return pigLatin;
+}
+
+translatePigLatin("consonant");
+
+** end of script.js **
+
+代码说明
+Make an empty string to hold your Pig Latin word.
+制作一个空字符串来保存你的 Pig Latin 单词。
+Assign your appropriate regular expression to a variable.
+将适当的正则表达式分配给变量。
+If the first character is a vowel, just add way to end of string and return it.
+如果第一个字符是元音，只需在字符串末尾添加 way 并返回它。
+If the first character is not a vowel:
+如果第一个字符不是元音：
+Find number of consonants before first vowel with help of indexOf(), match() and regex.
+在 indexOf（）、match（） 和 regex 的帮助下找到第一个元音之前的辅音数。
+Start Pig Latin string with first vowel till the end.
+从第一个元音开始 Pig Latin 字符串直到结尾。
+Add letters before first vowel to end of string.
+在字符串末尾的第一个元音之前添加字母。
+substr() is used for string manipulation here.
+substr（） 在这里用于字符串作。
+Add ay to end of string and return it.
+将 ay 添加到字符串的末尾并返回它。

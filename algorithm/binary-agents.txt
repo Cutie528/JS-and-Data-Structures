@@ -1,0 +1,25 @@
+** start of script.js **
+
+/*请实现一个函数，把传入的二进制字符串转换成英文句子。
+二进制字符串会以空格分隔。
+在将这些值转换为字符之前，您应该首先从 binary 转换为 decimal。 */
+function binaryAgent(str) {
+ var biString = str.split(" ");
+  var uniString = [];
+  for (var i = 0; i < biString.length; i++) {
+    uniString.push(String.fromCharCode(parseInt(biString[i], 2)));
+  }
+  return uniString.join("");
+  /*代码说明
+将字符串分隔为由空格分隔的字符串数组。
+创建一些您将在此过程中使用的变量 - 这些名称在大多数情况下是不言自明的。
+遍历新数组中的每个二进制字符串。
+使用 parseInt（_binary_， 2） 转换为 decimal。使用第二个参数指定输入数字的基数。
+At the end, return the converted message.
+最后，返回转换后的消息。 */
+}
+
+binaryAgent("01000001 01110010 01100101 01101110 00100111 01110100 00100000 01100010 01101111 01101110 01100110 01101001 01110010 01100101 01110011 00100000 01100110 01110101 01101110 00100001 00111111");
+
+** end of script.js **
+

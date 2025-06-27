@@ -1,0 +1,16 @@
+短线连接格式
+将字符串转换为短线连接格式。 短线连接格式是小写单词全部小写并以破折号分隔。
+
+** start of script.js **
+
+function spinalCase(str) {
+   var regex = /\s+|_+/g;
+str = str.replace(/([a-z])([A-Z])/g, "$1 $2");
+return str.replace(regex, "-").toLowerCase();
+  
+}
+
+spinalCase('This Is Spinal Tap');
+
+** end of script.js **
+

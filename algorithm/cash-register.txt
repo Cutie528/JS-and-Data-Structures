@@ -1,0 +1,88 @@
+收银机
+请编写一个用于收银机的函数 checkCashRegister()：它的第一个参数为售价 price、第二个参数为支付金额 cash、第三个参数为收银机內的金额 cid。
+
+cid 是包含货币面值的二维数组。
+
+函数 checkCashRegister() 应返回含有 status 属性和 change 属性的对象。
+
+如果收银机內的金额少于应找回的零钱数，或者你无法返回确切的数目时，返回 {status: "INSUFFICIENT_FUNDS", change: []}。
+
+如果收银机內的金额恰好等于应找回的零钱数，返回 {status: "CLOSED", change: [...]}，其中 change 的属性值就是收银机內的金额。
+
+否则，返回 {status: "OPEN", change: [...]}，其中 change 键值是应找回的零钱数，并将找零的面值由高到低排序。
+
+货币单位 Unit	面值
+Penny	0.01 美元（PENNY）
+Nickel	0.05 美元（NICKEL）
+Dime	0.1 美元（DIME）
+Quarter	0.25 美元（QUARTER）
+Dollar	1 美元（ONE）
+Five Dollars	5 美元（五）
+Ten Dollars	10 美元（TEN）
+Twenty Dollars	20 美元（TWENTY）
+One-hundred Dollars	100美元（ONE HUNDRED）
+下面的抽屉里现金数组示例：
+
+[
+  ["PENNY", 1.01],
+  ["NICKEL", 2.05],
+  ["DIME", 3.1],
+  ["QUARTER", 4.25],
+  ["ONE", 90],
+  ["FIVE", 55],
+  ["TEN", 20],
+  ["TWENTY", 60],
+  ["ONE HUNDRED", 100]
+]
+** start of script.js **
+
+function checkCashRegister(price, cash, cid) {
+  const currencyUnits = [
+    { name: "ONE HUNDRED", value: 100.00 },
+    { name: "TWENTY", value: 20.00 },
+    { name: "TEN", value: 10.00 },
+    { name: "FIVE", value: 5.00 },
+    { name: "ONE", value: 1.00 },
+    { name: "QUARTER", value: 0.25 },
+    { name: "DIME", value: 0.10 },
+    { name: "NICKEL", value: 0.05 },
+    { name: "PENNY", value: 0.01 }
+  ];
+  //cashAvailable总金额
+  //reduce() 方法接收的回调函数包含两个参数：total 和 current。total 初始值为 0，用于存储累加的结果，current 包含两个元素，分别是钞票类型和金额。在每次循环中，回调函数将 current 中的第二个元素加上 total，最终返回累加器的当前值。也就是将收银机中每种钞票的金额都加起来，得到收银机中总金额。
+  let changeDue = cash - price;
+  let cashAvailable = cid.reduce((total, current) => total + current[1], 0);
+  let change = [];
+  
+  if (changeDue > cashAvailable) {
+    return { status: "INSUFFICIENT_FUNDS", change: [] };
+  } 
+  //  toFixed() 方法将其转换为指定位数的小数
+    else if (changeDue.toFixed(2) === cashAvailable.toFixed(2)) {
+    return { status: "CLOSED", change: cid };
+  } else {
+    cid = cid.reverse();
+
+    for (let i = 0; i < currencyUnits.length; i++) {
+      let currencyAmount = 0;
+      while (changeDue >= currencyUnits[i].value && cid[i][1] >= currencyUnits[i].value) {
+        currencyAmount += currencyUnits[i].value;
+        cid[i][1] -= currencyUnits[i].value;
+        changeDue -= currencyUnits[i].value;
+        changeDue = Math.round(changeDue * 100) / 100;
+      }
+      if (currencyAmount > 0) {
+        change.push([currencyUnits[i].name, currencyAmount]);
+      }
+    }
+    if (changeDue > 0) {
+      return { status: "INSUFFICIENT_FUNDS", change: [] };
+    }
+    return { status: "OPEN", change: change };
+  }
+}
+
+checkCashRegister(19.5, 20, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]]);
+
+** end of script.js **
+

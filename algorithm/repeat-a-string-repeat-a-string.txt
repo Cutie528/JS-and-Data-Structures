@@ -1,0 +1,19 @@
+** start of script.js **
+
+function repeatStringNumTimes(str, num) {
+  let reparr = "";
+  for(let i = 0; i < num; i ++){
+    reparr += str;
+  }
+  return reparr;
+  /*if (num < 1) {
+    return "";
+  } else {
+    return str + repeatStringNumTimes(str, num - 1);
+  }*/ 
+}
+
+repeatStringNumTimes('abc', 3);
+
+** end of script.js **
+

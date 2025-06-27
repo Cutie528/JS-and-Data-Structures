@@ -1,0 +1,33 @@
+质数（prime number）是大于 1 且仅可以被 1 和自己整除的数。 比如，2 就是一个质数，因为它只可以被 1 和 2（它本身）整除。 相反，4 不是质数，因为它可以被 1, 2 和 4 整除。
+
+请完成 sumPrimes 方法，使其返回小于等于传入参数数字的所有质数之和。
+
+** start of script.js **
+
+function sumPrimes(num) {
+  function isPrime(num) {
+    const sqrt = Math.sqrt(num);
+    for (let i = 2; i <= sqrt; i++) {
+      if (num % i === 0)
+        return false;
+    }
+    return true;
+  }
+
+  // Check all numbers for primality
+  let sum = 0;
+  for (let i = 2; i <= num; i++) {
+    if (isPrime(i))
+      sum += i;
+  }
+  return sum;
+}
+
+sumPrimes(10);
+
+** end of script.js **
+代码说明
+We loop over all values in our range, adding them to the sum if they are prime.
+我们遍历 Range 中的所有值，如果它们是质数，则将它们添加到总和中。
+Our primality checking function returns false if the target number is divisible by any number in between 2 and the square root of the target number. We only need to check up to the square root because the square root of a number is the largest possible unique divisor.
+如果目标数字能被 2 和目标数字的平方根之间的任何数字整除，我们的素数检查函数返回 false。我们只需要检查到平方根，因为数字的平方根是可能的最大唯一约数。

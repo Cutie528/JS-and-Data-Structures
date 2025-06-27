@@ -1,0 +1,39 @@
+** start of script.js **
+
+function orbitalPeriod(arr) {
+  const GM = 398600.4418;
+  const earthRadius = 6367.4447;
+  const a = 2 * Math.PI;
+  const newArr = [];
+
+  const getOrbPeriod = function(obj) {
+    const c = Math.pow(earthRadius + obj.avgAlt, 3);
+    const b = Math.sqrt(c / GM);
+    const orbPeriod = Math.round(a * b);
+    // create new object
+    return {name: obj.name, orbitalPeriod: orbPeriod};
+  };
+
+  for (let elem in arr) {
+    newArr.push(getOrbPeriod(arr[elem]));
+  }
+
+  return newArr;
+}
+/*GM 和 earthRadius 都是给我们的。
+
+Create newArr to store the orbPeriod's.创建 newArr 来存储 orbPeriod 的。
+a is 2 times pi. The part that is a constant is on the global scope while the rest is part of a function.
+a 是 pi 的 2 倍。作为常量的部分位于全局范围内，而其余部分是函数的一部分。
+Create a function, gerOrbPeriod() that will do the required work for any amount of objects.
+创建一个函数 gerOrbPeriod（）， 该函数将为任意数量的对象执行所需的工作。
+c is (earthRadius + avgAlt) to the cube.c 是（earthRadius + avgAlt） 的立方体。
+b is the square root of c divided by GM.b 是 c 除以 GM 的平方根。
+Create orbPeriod to store the product of a and b, with the Math.round() function applied to round up to the next whole number.
+创建 orbPeriod 以存储 a 和 b 的乘积，并应用 Math.round（） 函数向上舍入到下一个整数。
+Then we delete the key avgAlt, and add the new key and its value.
+然后我们删除键 avgAlt，并添加新键及其值。 */
+orbitalPeriod([{name : "sputnik", avgAlt : 35873.5553}]);
+
+** end of script.js **
+

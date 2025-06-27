@@ -1,0 +1,44 @@
+** start of script.js **
+
+/*以下方法填充对象构造函数：
+getFirstName()
+getLastName()
+getFullName()
+setFirstName(first)
+setLastName(last)
+setFullName(firstAndLast)
+运行测试以查看每个方法的预期输出。 方法接收一个参数，因此必须要有一个参数，并且其类型应该为字符串。 这些方法必须是与对象交互的唯一可用方法。 */
+const Person = function(first, last) {
+  let firstName = first;
+  let lastName  = last;
+  this.getFirstName = function() {
+    return firstName;
+  };
+  this.getLastName = function() {
+    return lastName;
+  };
+  this.getFullName = function() {
+    return this.getFirstName() + " " + this.getLastName();
+  };
+  this.setFirstName = function(first) {
+    return firstName = first;
+  };
+  this.setLastName = function(last) {
+    return lastName = last;
+  };
+  this.setFullName = function(first, last) {
+    this.setFirstName(first);
+    this.setLastName(last);
+    return this.getFullName();
+  };
+};
+const bob = new Person("Bob", "Ross");
+console.log(bob.getFullName());
+/*代码说明
+Two local variables hold the two names for the object.
+两个局部变量保存对象的两个名称。
+For the full name getter and setter, we use the first and last name getters/setters.
+对于全名 getter 和 setter，我们使用名字和姓氏 getters/setter。 */
+
+** end of script.js **
+

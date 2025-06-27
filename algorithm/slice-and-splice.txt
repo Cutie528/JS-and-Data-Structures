@@ -1,0 +1,22 @@
+将第一个数组中的所有元素依次复制到第二个数组中。
+
+请注意，你需要从第二个数组索引值为 n 的地方开始插入。
+
+最后，请返回插入元素后的数组。 作为输入参数的两个数组在函数执行前后应保持不变。
+** start of script.js **
+
+function frankenSplice(arr1, arr2, n) {
+  let localArray = arr2.slice();
+  /*for (let i = 0; i < arr1.length; i++) {
+    localArray.splice(n, 0, arr1[i]);
+    n++;
+  }
+  return localArray;*/
+   localArray.splice(n, 0, ...arr1);
+  return localArray;
+}
+
+frankenSplice([1, 2, 3], [4, 5, 6], 1);
+
+** end of script.js **
+

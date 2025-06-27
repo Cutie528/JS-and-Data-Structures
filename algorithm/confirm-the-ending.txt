@@ -1,0 +1,14 @@
+** start of script.js **
+
+function confirmEnding(str, target) {
+
+ // return str.slice(str.length -target.length) === target;
+ 
+ let re = new RegExp(target + "$", "i");
+  return re.test(str);
+}
+
+confirmEnding('Bastian', 'n');
+
+** end of script.js **
+

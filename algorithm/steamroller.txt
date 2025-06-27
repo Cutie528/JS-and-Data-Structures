@@ -1,0 +1,34 @@
+** start of script.js **
+
+/*压路机
+这个问题看起来很简单，但你需要确保展平任何数组，无论级别如何，这都会给问题增加一点难度。
+您需要检查元素是否为数组。如果你正在处理一个数组，那么你需要通过获取数组内部的值来展平它。这意味着如果你有 [[4]]， 那么你需要返回 4，而不是返回 [4]。 如果你得到 [[[4]]]， 那么同样，你想要 4。您可以使用 arr[index1][index2] 访问它以更深入。*/ 
+
+function steamrollArray(arr) {
+  const flattenedArray = [];
+  for (let i = 0; i < arr.length; i++) {
+    if (Array.isArray(arr[i])) {
+      
+      flattenedArray.push(...steamrollArray(arr[i]));
+    } else {
+      
+      flattenedArray.push(arr[i]);
+    }
+  }
+  return flattenedArray;
+}
+
+steamrollArray([1, [2], [3, [[4]]]]);
+
+** end of script.js **
+代码说明
+Create a new variable to keep flattened arrays.
+创建一个新变量以保持扁平化数组。
+Loop over the elements of the array
+遍历数组的元素
+If the element is an array then call the function again with to flatten the subarray and push the contents of the flattened subarray into the flattened array.
+如果元素是数组，则再次调用函数 with 以展平子数组并将展平的子数组的内容推送到展平的数组中。
+If the element is not an array, then push that non-array element to the flattened array.
+如果元素不是数组，则将该非数组元素推送到展平数组。
+Return the flattened array.
+返回扁平化数组。

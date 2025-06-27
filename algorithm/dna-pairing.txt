@@ -1,0 +1,26 @@
+脱氧核糖核酸组由核酸对组成。 基本配对的字符是 AT and CG，这些字符形成了 DNA 双螺旋的构件。
+
+DNA 链缺少配对元素。 写一个函数来匹配缺失的 DNA 字符串。 对于提供的字符串中的每个字符，找出基本的配对字符。 返回二维数组的结果。
+
+例如，传入 GCG 时，应返回 [["G", "C"], ["C","G"], ["G", "C"]]。
+
+字符和它的配对组成一个数组，所有配对数组放在一个数组里。
+
+** start of script.js **
+
+function pairElement(str) {
+  const pairs = {
+    A: "T",
+    T: "A",
+    C: "G",
+    G: "C"
+  };
+  return str
+  .split("")
+  .map(x => [x, pairs[x]]);
+}
+
+pairElement("GCG");
+
+** end of script.js **
+
